@@ -1,0 +1,2 @@
+bravado_core
+sqlparse
