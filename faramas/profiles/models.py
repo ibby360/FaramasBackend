@@ -25,11 +25,13 @@ class UserProfile(models.Model):
     )
     profile_picture = models.ImageField(
         upload_to="profile_pictures/",
-        default="profile_pictures/default.jpg",
+        null=True,
+        blank=True,
     )
     passport_size = models.ImageField(
         upload_to="passport_sizes/",
-        default="passport_sizes/default.jpg",
+        null=True,
+        blank=True,
     )
     is_broker = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)

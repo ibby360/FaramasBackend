@@ -17,6 +17,19 @@ class UserSerializer(serializers.ModelSerializer[User]):
             "url": {"view_name": "api:user-detail", "lookup_field": "pk"},
         }
 
+    def update(self, instance: User, validated_data: dict) -> User:
+        """
+        Update the user instance with the provided validated data.
+        """
+        user_profile_data = validated_data.pop("user_profile", None)
+        if user_profile_data:
+            user_profile_serializer = UserProfileSerializer(
+                instance.user_profile, data=user_profile_data, partial=True
+            )
+            user_profile_serializer.is_valid(raise_exception=True)
+            user_profile_serializer.save()
+
+        return super().update(instance, validated_data)
 class CustomRegisterSerializer(RegisterSerializer):
     """
     Custom registration serializer to add extra fields to the registration process.
