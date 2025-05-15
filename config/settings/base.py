@@ -329,8 +329,8 @@ REST_AUTH = {
     # 'JWT_AUTH_REFRESH_COOKIE': 'faramas-refresh-token',
 
     'USER_DETAILS_SERIALIZER': 'faramas.users.api.serializers.UserSerializer',
+    'REGISTER_SERIALIZER': 'faramas.users.api.serializers.CustomRegisterSerializer',
     "REST_AUTH_REGISTER_SERIALIZERS": {
-        'REGISTER_SERIALIZER': 'faramas.users.api.serializers.CustomRegisterSerializer'
     }
 
 }

@@ -59,6 +59,7 @@ class User(AbstractUser):
     phone_number = CharField(
         _("phone number"), blank=True, max_length=20, unique=True
     )
+    username = None  # type: ignore[assignment]
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["phone_number"]

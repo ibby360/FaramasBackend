@@ -31,14 +31,16 @@ class CustomRegisterSerializer(RegisterSerializer):
         Override to include extra fields in the cleaned data.
         """
         return {
-            **super().get_cleaned_data(),
-            "full_name": self.cleaned_data.get("full_name"),
-            "phone_number": self.cleaned_data.get("phone_number"),
+            "full_name": self.validated_data.get("full_name"),
+            "email": self.validated_data.get("email"),
+            "phone_number": self.validated_data.get("phone_number"),
+            'password1': self.validated_data.get('password1', ''),
+            'password2': self.validated_data.get('password2', ''),
         }
 
     def save(self, request):
         user = super().save(request)
-        user.full_name = self.cleaned_data.get("full_name")
-        user.phone_number = self.cleaned_data.get("phone_number")
+        user.full_name = self.validated_data.get("full_name")
+        user.phone_number = self.validated_data.get("phone_number")
         user.save()
         return user
